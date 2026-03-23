@@ -258,6 +258,318 @@ class NetworkScanner:
             
             print(f"{d['ip']:<16} {d['mac']:<18} {hostname:<25} {vendor:<20} {device_type}")
     
+
+    def export_to_pdf(self, devices, filename='network_report.pdf'):
+        """Export devices to PDF report."""
+        from reportlab.lib.pagesizes import A4
+        from reportlab.lib import colors
+        from reportlab.lib.styles import getSampleStyleSheet
+        from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
+        from reportlab.lib.units import inch
+        
+        doc = SimpleDocTemplate(filename, pagesize=A4)
+        elements = []
+        styles = getSampleStyleSheet()
+        
+        # Title
+        elements.append(Paragraph("📡 Network Scan Report", styles['Title']))
+        elements.append(Spacer(1, 0.3*inch))
+        
+        # Summary
+        import datetime
+        elements.append(Paragraph(f"<b>Fecha:</b> {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')}", styles['Normal']))
+        elements.append(Paragraph(f"<b>Total dispositivos:</b> {len(devices)}", styles['Normal']))
+        elements.append(Spacer(1, 0.3*inch))
+        
+        # Known vs Unknown
+        known = [d for d in devices if d.get('is_known')]
+        unknown = [d for d in devices if not d.get('is_known')]
+        elements.append(Paragraph(f"<b>Dispositivos conocidos:</b> {len(known)}", styles['Normal']))
+        elements.append(Paragraph(f"<b>Dispositivos nuevos:</b> {len(unknown)}", styles['Normal']))
+        elements.append(Spacer(1, 0.5*inch))
+        
+        # Table header
+        data = [['IP', 'Nombre', 'MAC', 'Vendor', 'Tipo']]
+        for d in devices:
+            name = d.get('known_name') or d.get('hostname') or '-'
+            ip = d.get('ip', '-')
+            mac = d.get('mac', '-')
+            vendor = d.get('vendor', '-') or '-'
+            dtype = d.get('device_type', '-').replace('🍎 ', '').replace('📱 ', '').replace('🫐 ', '').replace('🌐 ', '').replace('💻 ', '').replace('📶 ', '').replace('❓ ', '')
+            data.append([ip, name[:20], mac, vendor[:15], dtype[:15]])
+        
+        table = Table(data, colWidths=[1.1*inch, 1.5*inch, 1.4*inch, 1*inch, 1*inch])
+        table.setStyle(TableStyle([
+            ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#3b82f6')),
+            ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+            ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+            ('FONTSIZE', (0, 0), (-1, 0), 9),
+            ('FONTSIZE', (0, 1), (-1, -1), 7),
+            ('BOTTOMPADDING', (0, 0), (-1, 0), 8),
+            ('BACKGROUND', (0, 1), (-1, -1), colors.HexColor('#1e293b')),
+            ('TEXTCOLOR', (0, 1), (-1, -1), colors.white),
+            ('GRID', (0, 0), (-1, -1), 0.5, colors.HexColor('#334155')),
+            ('ROWBACKGROUNDS', (0, 1), (-1, -1), [colors.HexColor('#1e293b'), colors.HexColor('#0f172a')]),
+            ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+        ]))
+        
+        elements.append(table)
+        doc.build(elements)
+        print(f"PDF exported to {filename}")
+        return filename
+
+    def export_full_report(self, devices):
+        """Export complete report: JSON + PDF + Dashboard."""
+        import os
+        
+        # 1. Export to JSON
+        self.export_to_dashboard(devices)
+        
+        # 2. Export to PDF
+        pdf_file = 'network_report.pdf'
+        self.export_to_pdf(devices, pdf_file)
+        
+        # 3. Copy PDF to shared location
+        import shutil
+        dest = '/tmp/network_report.pdf'
+        shutil.copy(pdf_file, dest)
+        print(f"Report available at {dest}")
+        
+        return pdf_file
+
+
+    # ============== NMAP Integration ==============
+    
+    def scan_ports(self, ip, ports=None):
+        """Scan specific ports on an IP using nmap."""
+        if ports is None:
+            ports = [22, 80, 443, 8080, 5000, 139, 445, 3389, 5900]
+        
+        try:
+            ports_str = ','.join(map(str, ports))
+            result = subprocess.run(
+                ['/opt/homebrew/bin/nmap', '-Pn', '-p', ports_str, '-oX', '-', ip],
+                capture_output=True, text=True, timeout=30
+            )
+            
+            open_ports = []
+            for line in result.stdout.split('\n'):
+                if 'state="open"' in line:
+                    try:
+                        port_match = line.split('portid="')[1].split('"')[0]
+                        service = line.split('name="')[1].split('"')[0] if 'name="' in line else 'unknown'
+                        open_ports.append({'port': port_match, 'service': service})
+                    except:
+                        pass
+            
+            return {'ip': ip, 'open_ports': open_ports, 'scanned': True}
+        except Exception as e:
+            return {'ip': ip, 'open_ports': [], 'error': str(e), 'scanned': False}
+    
+    def deep_scan(self, ip):
+        """Deep scan with OS detection and service version."""
+        try:
+            result = subprocess.run(
+                ['/opt/homebrew/bin/nmap', '-Pn', '-sV', '-O', '-oX', '-', ip],
+                capture_output=True, text=True, timeout=60
+            )
+            
+            info = {'ip': ip, 'os': None, 'services': [], 'scanned': True}
+            
+            for line in result.stdout.split('\n'):
+                if 'osclass' in line:
+                    try:
+                        os_match = line.split('name="')[1].split('"')[0] if 'name="' in line else None
+                        if os_match:
+                            info['os'] = os_match
+                    except:
+                        pass
+                if 'service name="' in line:
+                    try:
+                        svc = line.split('service name="')[1].split('"')[0]
+                        version = ''
+                        if 'version="' in line:
+                            version = line.split('version="')[1].split('"')[0]
+                        info['services'].append({'service': svc, 'version': version})
+                    except:
+                        pass
+            
+            return info
+        except Exception as e:
+            return {'ip': ip, 'error': str(e), 'scanned': False}
+    
+    def get_device_info(self, ip):
+        """Get complete device info: ARP + NMAP ports."""
+        device = {
+            'ip': ip,
+            'hostname': self.get_hostname(ip),
+            'open_ports': self.scan_ports(ip).get('open_ports', [])
+        }
+        return device
+    
+    # ============== Analisis / History ==============
+    
+    def _load_events(self):
+        """Load device events from file."""
+        try:
+            with open('device_events.json', 'r') as f:
+                return json.load(f)
+        except:
+            return []
+    
+    def _save_events(self, events):
+        """Save device events to file."""
+        with open('device_events.json', 'w') as f:
+            json.dump(events, f, indent=2)
+    
+    def _save_device_event(self, event_type, device):
+        """Save a device event (online/offline/new)."""
+        import datetime
+        events = self._load_events()
+        
+        mac = device.get('mac', '').upper().replace(':', '').replace('-', '')
+        
+        event = {
+            'timestamp': datetime.datetime.now().isoformat(),
+            'type': event_type,
+            'ip': device.get('ip'),
+            'mac': mac,
+            'hostname': device.get('hostname'),
+            'vendor': device.get('vendor')
+        }
+        
+        events.append(event)
+        
+        if len(events) > 1000:
+            events = events[-1000:]
+        
+        self._save_events(events)
+    
+    def get_device_history(self, mac):
+        """Get history for a specific device MAC."""
+        events = self._load_events()
+        mac_normalized = mac.upper().replace(':', '').replace('-', '')
+        return [e for e in events if e.get('mac', '').replace(':', '').replace('-', '').upper() == mac_normalized]
+    
+    def get_online_trend(self):
+        """Get online/offline trends for all devices."""
+        events = self._load_events()
+        trends = {}
+        
+        for event in events:
+            mac = event.get('mac', '').replace(':', '').replace('-', '').upper()
+            if mac not in trends:
+                trends[mac] = {
+                    'mac': mac,
+                    'first_seen': event['timestamp'],
+                    'last_seen': event['timestamp'],
+                    'events': [],
+                    'online_count': 0,
+                    'offline_count': 0
+                }
+            
+            trends[mac]['events'].append({'type': event['type'], 'time': event['timestamp']})
+            
+            if event['type'] in ['online', 'new']:
+                trends[mac]['online_count'] += 1
+            elif event['type'] in ['offline', 'gone']:
+                trends[mac]['offline_count'] += 1
+            
+            if event['timestamp'] > trends[mac]['last_seen']:
+                trends[mac]['last_seen'] = event['timestamp']
+        
+        return list(trends.values())
+    
+    def _detect_anomaly(self, devices):
+        """Detect anomalies: new devices or missing known devices."""
+        anomalies = {'new': [], 'missing': []}
+        
+        current_macs = set()
+        for d in devices:
+            mac = d.get('mac', '').upper().replace(':', '').replace('-', '')
+            if mac:
+                current_macs.add(mac)
+        
+        for d in devices:
+            mac = d.get('mac', '').upper().replace(':', '').replace('-', '')
+            if mac and mac not in self.known_devices and mac not in ['', 'FFFFFFFFFFFF']:
+                anomalies['new'].append(d)
+                self._save_device_event('new', d)
+        
+        known_macs = set(self.known_devices.keys())
+        missing = known_macs - current_macs
+        for mac in missing:
+            device = {'mac': mac, 'ip': None, 'hostname': None, 'vendor': None}
+            anomalies['missing'].append(device)
+            self._save_device_event('gone', device)
+            print("ALERT: Known device " + str(self.known_devices[mac].get('name', mac)) + " is missing!")
+        
+        if anomalies['new']:
+            print("ALERT: " + str(len(anomalies['new'])) + " new device(s) detected!")
+            for d in anomalies['new']:
+                print("   New: " + str(d.get('ip')) + " - " + str(d.get('mac')) + " - " + str(d.get('vendor')))
+        
+        return anomalies
+    
+    def export_trend_report(self):
+        """Export trend report to JSON."""
+        import datetime
+        trends = self.get_online_trend()
+        
+        report = {
+            'generated': datetime.datetime.now().isoformat(),
+            'total_devices_tracked': len(trends),
+            'trends': []
+        }
+        
+        for mac, data in [(t['mac'], t) for t in trends]:
+            known_name = self.known_devices.get(mac, {}).get('name', 'Unknown')
+            report['trends'].append({
+                'mac': mac,
+                'name': known_name,
+                'first_seen': data['first_seen'],
+                'last_seen': data['last_seen'],
+                'appearances': data['online_count'],
+                'disappearances': data['offline_count'],
+                'stability': 'high' if data['offline_count'] == 0 else 'medium' if data['offline_count'] < 3 else 'low'
+            })
+        
+        with open('trend_report.json', 'w') as f:
+            json.dump(report, f, indent=2)
+        
+        print("Trend report exported: " + str(len(trends)) + " devices tracked")
+        return report
+    
+    def full_analysis(self, devices=None):
+        """Run complete analysis: scan + anomaly detection + trend report."""
+        if devices is None:
+            print("Running full network analysis...")
+            devices = self.scan()
+        
+        print("\nAnalysis Results:")
+        print("   Total devices: " + str(len(devices)))
+        
+        for d in devices:
+            self._save_device_event('online', d)
+        
+        anomalies = self._detect_anomaly(devices)
+        report = self.export_trend_report()
+        
+        print("\nTrend Summary:")
+        for t in report['trends'][:5]:
+            print("   " + str(t['name']) + ": " + str(t['appearances']) + "x online, " + str(t['disappearances']) + "x offline (" + str(t['stability']) + ")")
+        
+        if anomalies['new']:
+            print("\n" + str(len(anomalies['new'])) + " NEW devices detected!")
+        if anomalies['missing']:
+            print("\n" + str(len(anomalies['missing'])) + " devices missing!")
+        
+        return {
+            'devices': devices,
+            'anomalies': anomalies,
+            'report': report
+        }
+
     def wake_on_lan(self, mac_address):
         """Send Wake-on-LAN packet to specified MAC address."""
         mac_normalized = mac_address.replace(':', '').replace('-', '').upper()
