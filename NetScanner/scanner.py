@@ -25,7 +25,10 @@ KNOWN = {
     '58D9D53FCF60': 'meshs',
     '58D9D53FCFC0': 'mesh1',
     '001132369A7F': 'NAS Synology',
-    '726EB8EEF4F16': 'POCO X6 Pro',
+    'D4909CF228B': 'Salon-2',
+    '48E15C770FBD': 'Salon-475',
+    '866898975C9A': 'Dispositivo Desván',
+    '721B8EEF4F16': 'POCO X6 Pro',
     '64E7D84FC858': 'Samsung TV',
     '2AD7114CFD18': 'iPhone Jose',
     '48E15C770FBD': 'Salon-475',
@@ -44,7 +47,7 @@ KNOWN = {
     'A63A5C6C8032': 'iPad de Jose',
     '685EDD64282F': 'MacBook Air Jose',
     '6427D84FC858': 'Samsung TV',
-    '726EB8EEF4F16': 'POCO X6 Pro',
+    '721B8EEF4F16': 'POCO X6 Pro',
     'B827EBE64F57': 'Raspberry Pi',
     'E42354118A52': 'Gosund Plug',
     '8C8580DA43DD': 'Indoor Cam',
@@ -99,6 +102,8 @@ def get_type(v, h):
     if 'iphone' in hl: return '🍎 Apple'
     if 'iot' in hl or 'device' in hl: return '🏠 IoT'
     if 'gw-' in hl: return '📶 Gateway'
+    if 'desvan' in hl: return '🏠 Dispositivo'
+    if 'salon-2' in hl: return '🏠 Dispositivo'
 
 
 
