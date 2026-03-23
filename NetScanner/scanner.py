@@ -25,6 +25,11 @@ KNOWN = {
     '58D9D53FCF60': 'meshs',
     '58D9D53FCFC0': 'mesh1',
     '001132369A7F': 'NAS Synology',
+    '8C8580C922': 'Apple TV',
+    '48E15C770FBD': 'Apple TV (Salon-475)',
+    '48E15C770FBD': 'Apple TV (Salon-475)',
+    '8C8580C92': 'Apple TV',
+    '8C8580C92': 'Apple TV',
     'D4909CF228B': 'Salon-2',
     '0D4909CF228B': 'Salon-2',
     '48E15C770FBD': 'Salon-475',
@@ -91,10 +96,8 @@ KNOWN = {
 }
 
 def norm_mac(mac):
-    # Remove all separators and pad to 12 chars
-    clean = mac.replace(':', '').replace('-', '').upper()
-    # Pad with leading zeros to 12 chars
-    return clean.zfill(12)
+    # Remove all separators and uppercase
+    return mac.replace(':', '').replace('-', '').upper()
 
 def get_vendor(mac):
     mc = norm_mac(mac)
