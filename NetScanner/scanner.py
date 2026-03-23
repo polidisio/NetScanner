@@ -279,7 +279,9 @@ class NetworkScanner:
             return False
     
     def export_to_dashboard(self, devices):
-        """Export devices to dashboard-compatible format."""
+        """Export devices to dashboard-compatible format and send to web dashboard."""
+        import subprocess
+        
         dashboard_data = {
             'last_scan': datetime.datetime.now().isoformat(),
             'device_count': len(devices),
@@ -304,6 +306,26 @@ class NetworkScanner:
         try:
             with open('dashboard.json', 'w') as f:
                 json.dump(dashboard_data, f, indent=2)
-            print("Dashboard data exported to dashboard.json")
+            print(f"Dashboard data exported ({len(devices)} devices)")
         except Exception as e:
-            print(f"Failed to export dashboard: {e}")
+            print(f"Failed to export: {e}")
+        
+        # Send to web dashboard via curl
+        try:
+            device_list = ', '.join([d.get('hostname') or d['ip'] for d in devices[:10]])
+            if len(devices) > 10:
+                device_list += f'... y {len(devices) - 10} mas'
+            
+            msg = {
+                'title': f'NetScan - {len(devices)} devices',
+                'category': 'ai',
+                'content': f'Scan completo: {len(devices)} dispositivos. Principales: {device_list}'
+            }
+            
+            curl_cmd = ['curl', '-s', '-X', 'POST', 'http://192.168.1.172:5000/api/messages',
+                       '-H', 'Content-Type: application/json', '-d', json.dumps(msg)]
+            result = subprocess.run(curl_cmd, capture_output=True, text=True, timeout=10)
+            if result.returncode == 0:
+                print("Summary sent to web dashboard!")
+        except Exception as e:
+            print(f"Failed to send to dashboard: {e}")
