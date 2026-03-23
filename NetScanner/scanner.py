@@ -25,6 +25,17 @@ KNOWN = {
     '58D9D53FCF60': 'meshs',
     '58D9D53FCFC0': 'mesh1',
     '001132369A7F': 'NAS Synology',
+    'D4909CF228B': 'Salon-2',
+    '0D4909CF228B': 'Salon-2',
+    '48E15C770FBD': 'Salon-475',
+    '866898975C9A': 'Dispositivo Desván',
+    '4ECE5DBCE5C2': 'IoT Device',
+    '8C8580C92': 'Imou Camera',
+    'DC68EBB154E': 'IoT Device',
+    '0DC5D5DD96': 'IoT Device',
+    '30B5C2F8C1A': 'IoT Device',
+    'D446497EBF4': 'IoT Device',
+    'B414E6B28FA': 'Router/Gateway',
     'D4909CF228B': 'Salon-2 (IP157)',
     '48E15C770FBD': 'Salon-475 (IP239)',
     '866898975C9A': 'Dispositivo Desván',
@@ -43,6 +54,7 @@ KNOWN = {
     'B414E6B28FA': 'Router Gateway',
     'A0C9A0D96A4D': 'Router Gateway',
     'D4909CF228B': 'Salon-2',
+    '0D4909CF228B': 'Salon-2',
     '48E15C770FBD': 'Salon-475',
     '866898975C9A': 'Dispositivo Desván',
     '721B8EEF4F16': 'POCO X6 Pro',
@@ -79,7 +91,10 @@ KNOWN = {
 }
 
 def norm_mac(mac):
-    return mac.replace(':', '').replace('-', '').upper().zfill(12)
+    # Remove all separators and pad to 12 chars
+    clean = mac.replace(':', '').replace('-', '').upper()
+    # Pad with leading zeros to 12 chars
+    return clean.zfill(12)
 
 def get_vendor(mac):
     mc = norm_mac(mac)
