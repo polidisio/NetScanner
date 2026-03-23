@@ -1,0 +1,60 @@
+[2026-03-17 03:00:00] ==========================================
+[2026-03-17 03:00:00] OpenClaw Nightly Health Check
+[2026-03-17 03:00:00] ==========================================
+[2026-03-17 03:00:00] 📝 Checking memory...
+[2026-03-17 03:00:00]    ⚠️ Creating today's memory file
+[2026-03-17 03:00:00]    ✅ Yesterday's memory exists: 2026-03-16.md
+[2026-03-17 03:00:00]    💾 Backing up memory...
+[2026-03-17 03:00:00]    ✅ Memory backed up to OneDrive
+[2026-03-17 03:00:00] 🔧 Checking services...
+[2026-03-17 03:00:00]    ✅ Dashboard running on port 5007
+[2026-03-17 03:00:00]    ⚠️ OpenClaw gateway may not be running
+[2026-03-17 03:00:00]    ✅ Skills directory exists (6 skills)
+[2026-03-17 03:00:00] 🧠 Memory maintenance...
+[2026-03-17 03:00:00]    📅 MEMORY.md last updated: 2026-03-08
+[2026-03-17 03:00:00]    🗑️ Old logs cleaned (keeping 30 days)
+[2026-03-17 03:00:00] 💻 System info...
+[2026-03-17 03:00:00]    💾 Disk usage: 43%
+[2026-03-17 03:00:00]    🧊 Memory active: ~373 MB
+[2026-03-17 03:00:00] 🔄 Checking OpenClaw updates...
+[2026-03-17 03:00:00]    ✅ OpenClaw up to date ()
+[2026-03-17 03:00:00] 🔄 Checking system updates...
+[2026-03-17 03:00:12]    ✅ System up to date
+[2026-03-17 03:00:12] 
+[2026-03-17 03:00:12] ==========================================
+[2026-03-17 03:00:12] ✅ Nightly check complete
+[2026-03-17 03:00:12] ==========================================
+[2026-03-17 16:40:52] ==========================================
+[2026-03-17 16:40:52] OpenClaw Nightly Health Check
+[2026-03-17 16:40:52] ==========================================
+[2026-03-17 16:40:52] 📝 Checking memory...
+[2026-03-17 16:40:52]    ✅ Today's memory exists: 2026-03-17.md
+[2026-03-17 16:40:52]    ✅ Yesterday's memory exists: 2026-03-16.md
+[2026-03-17 16:40:52]    💾 Backing up memory...
+[2026-03-17 16:40:52]    ✅ Memory backed up to OneDrive
+[2026-03-17 16:40:52] 🔧 Checking services...
+[2026-03-17 16:40:52]    ⚠️ Dashboard not running on port 5007
+[2026-03-17 16:40:58]    ✅ OpenClaw gateway is active
+[2026-03-17 16:40:58]    ✅ Skills directory exists (6 skills)
+[2026-03-17 16:40:58] 🧠 Memory maintenance...
+[2026-03-17 16:40:58]    📅 MEMORY.md last updated: 2026-03-08
+[2026-03-17 16:40:58]    🗑️ Old logs cleaned (keeping 30 days)
+[2026-03-17 16:40:58] 💻 System info...
+[2026-03-17 16:40:58]    💾 Disk usage: 42%
+[2026-03-17 16:40:58]    🧊 Memory active: ~248 MB
+[2026-03-17 16:40:58] 🔄 Checking OpenClaw updates...
+[2026-03-17 16:40:59]    ⚠️ OpenClaw update available!
+[2026-03-17 16:40:59]       Current: 
+[2026-03-17 16:40:59]       Latest: 2026.3.13
+[2026-03-17 16:41:00]    🔔 ALERT: OpenClaw Update Available - Email sent
+[2026-03-17 16:41:00] 🔄 Checking system updates...
+[2026-03-17 16:41:00]    ✅ System up to date
+[2026-03-17 16:41:00] 🖥️ Monitoring remote Mac 192.168.1.201...
+[2026-03-17 16:41:00]    ✅ Remote Mac reachable
+[2026-03-17 16:41:02]       Uptime: 16:41  up 26 days
+[2026-03-17 16:41:02]       CPU: CPU usage: 9.82% user
+[2026-03-17 16:41:02]       Disk: 29%
+[2026-03-17 16:41:02] 
+[2026-03-17 16:41:02] ==========================================
+[2026-03-17 16:41:02] ✅ Nightly check complete
+[2026-03-17 16:41:02] ==========================================

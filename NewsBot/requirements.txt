@@ -1,0 +1,15 @@
+# Telegram Bot
+python-telegram-bot>=20.0
+
+# HTTP requests
+requests>=2.31.0
+
+# LLM
+# minimax-sdk>=0.1.0  # Descomentar si usas SDK oficial
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+
+# Config
+python-dotenv>=1.0.0

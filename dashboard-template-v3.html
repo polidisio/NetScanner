@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #09090b;
+            --surface: #18181b;
+            --surface-hover: #27272a;
+            --border: #3f3f46;
+            --text: #fafafa;
+            --text-muted: #a1a1aa;
+            --accent: #22d3ee;
+            --accent-dim: #06b6d4;
+            --accent-bg: rgba(34, 211, 238, 0.1);
+            --cyan: #22d3ee;
+            --pink: #ec4899;
+            --green: #22c55e;
+            --yellow: #eab308;
+            --purple: #a855f7;
+            --red: #ef4444;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 64px;
+            background: rgba(9, 9, 11, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+            z-index: 100;
+        }
+        
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .nav-brand svg {
+            width: 32px;
+            height: 32px;
+        }
+        
+        .nav-status {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .time {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+        
+        .live-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: var(--green);
+            background: rgba(34, 197, 94, 0.1);
+            padding: 6px 12px;
+            border-radius: 20px;
+        }
+        
+        .live-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        
+        /* Main */
+        main {
+            padding: 96px 32px 32px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Grid Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.2s;
+        }
+        
+        .stat-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        
+        .stat-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin-bottom: 16px;
+        }
+        
+        .stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Section */
+        .section {
+            margin-bottom: 32px;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Card */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+        }
+        
+        /* Form */
+        .input-grid {
+            display: grid;
+            grid-template-columns: 1fr 200px auto;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        
+        .input-group label {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        input, select {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px 16px;
+            color: var(--text);
+            font-size: 14px;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-bg);
+        }
+        
+        select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23a1a1aa' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            padding-right: 36px;
+        }
+        
+        .btn-row {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg);
+        }
+        
+        .btn-primary:hover {
+            background: var(--accent-dim);
+            transform: translateY(-1px);
+        }
+        
+        .btn-secondary {
+            background: var(--surface-hover);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--border);
+        }
+        
+        .btn-telegram {
+            background: #0088cc;
+            color: white;
+        }
+        
+        .btn-telegram:hover {
+            background: #0077aa;
+        }
+        
+        .btn-notes {
+            background: var(--yellow);
+            color: var(--bg);
+        }
+        
+        .btn-notes:hover {
+            background: #ca8a04;
+        }
+        
+        /* Messages */
+        .messages-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .message-item {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.2s;
+        }
+        
+        .message-item:hover {
+            border-color: var(--accent);
+        }
+        
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .message-title-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .message-title {
+            font-weight: 600;
+            font-size: 15px;
+        }
+        
+        .tag {
+            font-size: 10px;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .tag-cycling { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
+        .tag-ai, .tag-magazine { background: rgba(168, 85, 247, 0.15); color: #a855f7; }
+        .tag-ios { background: rgba(234, 179, 8, 0.15); color: #eab308; }
+        .tag-gaming { background: rgba(236, 72, 153, 0.15); color: #ec4899; }
+        .tag-default { background: var(--surface-hover); color: var(--text-muted); }
+        
+        .message-date {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .message-content {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px;
+            color: var(--text-muted);
+        }
+        
+        .empty-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+        
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--green);
+            color: var(--bg);
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            z-index: 1000;
+            animation: slideUp 0.3s ease;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav { padding: 0 16px; }
+            main { padding: 80px 16px 16px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .input-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-brand">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <path d="M3 9h18M9 21V9"/>
+            </svg>
+            Dashboard
+        </div>
+        <div class="nav-status">
+            <div class="live-badge">
+                <div class="live-dot"></div>
+                Live
+            </div>
+            <div class="time" id="time"></div>
+        </div>
+    </nav>
+    
+    <main>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon" style="background: rgba(34, 197, 94, 0.15);">🚴</div>
+                <div class="stat-value">{{ stats.cycling }}</div>
+                <div class="stat-label">Cycling</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background: rgba(168, 85, 247, 0.15);">🤖</div>
+                <div class="stat-value">{{ stats.ai }}</div>
+                <div class="stat-label">AI</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background: rgba(234, 179, 8, 0.15);">📱</div>
+                <div class="stat-value">{{ stats.ios }}</div>
+                <div class="stat-label">iOS</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background: rgba(236, 72, 153, 0.15);">🎮</div>
+                <div class="stat-value">{{ stats.gaming }}</div>
+                <div class="stat-label">Gaming</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-header">
+                <span>✨</span> Guardar Mensaje Rápido
+            </div>
+            <div class="card" style="border: 2px solid var(--accent);">
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label>Título</label>
+                        <input type="text" id="msgTitle" placeholder="Pega aquí el título o texto que quieras guardar" style="font-size: 16px; padding: 16px;">
+                    </div>
+                    <div class="input-group">
+                        <label>Categoría</label>
+                        <select id="msgCategory" style="font-size: 14px; padding: 16px;">
+                            <option value="magazine">📰 Magazine</option>
+                            <option value="cycling">🚴 Cycling</option>
+                            <option value="ai">🤖 AI</option>
+                            <option value="ios">📱 iOS</option>
+                            <option value="gaming">🎮 Gaming</option>
+                            <option value="default">📝 General</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="input-group" style="margin-top: 12px;">
+                    <label>URL / Contenido</label>
+                    <input type="text" id="msgContent" placeholder="Pega URL, link, o descripción..." style="font-size: 14px;">
+                </div>
+                <div style="display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap;">
+                    <button class="btn btn-primary" onclick="saveAll()" style="padding: 16px 28px; font-size: 14px;">
+                        <span>💾📱📝</span> GUARDAR TODO
+                    </button>
+                    <button class="btn btn-secondary" onclick="saveMessage()" style="padding: 16px 20px;">
+                        <span>💾</span> Solo Guardar
+                    </button>
+                    <button class="btn btn-telegram" onclick="sendToTelegram()" style="padding: 16px 20px;">
+                        <span>📱</span> Telegram
+                    </button>
+                    <button class="btn btn-notes" onclick="saveToAppleNotes()" style="padding: 16px 20px;">
+                        <span>📝</span> Notes
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-header">
+                <span>📋</span> Mensajes ({{ messages|length }})
+            </div>
+            <div class="messages-list">
+                {% if messages %}
+                    {% for msg in messages|reverse %}
+                    <div class="message-item">
+                        <div class="message-header">
+                            <div class="message-title-row">
+                                <span class="message-title">{{ msg.title }}</span>
+                                <span class="tag tag-{{ msg.category }}">{{ msg.category }}</span>
+                            </div>
+                            <span class="message-date">{{ msg.created_at[:16] }}</span>
+                        </div>
+                        {% if msg.content %}
+                        <div class="message-content">{{ msg.content }}</div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="empty-state">
+                        <div class="empty-icon">📭</div>
+                        <p>No hay mensajes guardados</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+    
+    <div id="toast" class="toast" style="display: none;"></div>
+    
+    <script>
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('time').textContent = now.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+        
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 3000);
+        }
+        
+        function saveMessage() {
+            const title = document.getElementById('msgTitle').value;
+            const category = document.getElementById('msgCategory').value;
+            const content = document.getElementById('msgContent').value;
+            
+            fetch('/api/messages', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ title, category, content })
+            })
+            .then(r => r.json())
+            .then(d => {
+                if (d.success) showToast('✅ Guardado');
+                setTimeout(() => location.reload(), 500);
+            });
+        }
+        
+        function sendToTelegram() {
+            const title = document.getElementById('msgTitle').value;
+            const category = document.getElementById('msgCategory').value;
+            const content = document.getElementById('msgContent').value;
+            
+            const text = `📰 *${title}*\n\n${content || '—'}\n\n_${category}_`;
+            
+            fetch('/api/telegram/send', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ text })
+            })
+            .then(r => r.json())
+            .then(d => d.ok ? showToast('📱 Enviado a Telegram') : showToast('❌ Error'));
+        }
+        
+        function saveToAppleNotes() {
+            const title = document.getElementById('msgTitle').value;
+            const category = document.getElementById('msgCategory').value;
+            const content = document.getElementById('msgContent').value;
+            
+            fetch('/api/apple-notes/save', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ title, category, content })
+            })
+            .then(r => r.json())
+            .then(d => d.success ? showToast('📝 Guardado en Notes') : showToast('❌ Error'));
+        }
+        
+        function saveAll() {
+            saveMessage();
+            setTimeout(() => {
+                sendToTelegram();
+                saveToAppleNotes();
+            }, 300);
+        }
+        
+        // Enter to save
+        document.getElementById('msgContent').addEventListener('keypress', e => {
+            if (e.key === 'Enter') saveAll();
+        });
+    </script>
+</body>
+</html>

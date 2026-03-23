@@ -1,0 +1,22 @@
+[2026-03-10 17:31:21] ==========================================
+[2026-03-10 17:31:21] OpenClaw Nightly Health Check
+[2026-03-10 17:31:21] ==========================================
+[2026-03-10 17:31:21] 📝 Checking memory...
+[2026-03-10 17:31:21]    ⚠️ Creating today's memory file
+[2026-03-10 17:31:21]    ⚠️ Yesterday's memory missing: 2026-03-09.md
+[2026-03-10 17:31:21]    💾 Backing up memory...
+[2026-03-10 17:31:21]    ✅ Memory backed up to OneDrive
+[2026-03-10 17:31:21] 🔧 Checking services...
+[2026-03-10 17:31:21]    ⚠️ Dashboard not running on port 5007
+[2026-03-10 17:31:25]    ✅ OpenClaw gateway is active
+[2026-03-10 17:31:25]    ✅ Skills directory exists (6 skills)
+[2026-03-10 17:31:25] 🧠 Memory maintenance...
+[2026-03-10 17:31:25]    📅 MEMORY.md last updated: 2026-03-08
+[2026-03-10 17:31:25]    🗑️ Old logs cleaned (keeping 30 days)
+[2026-03-10 17:31:25] 💻 System info...
+[2026-03-10 17:31:25]    💾 Disk usage: 42%
+[2026-03-10 17:31:25]    🧊 Memory active: ~298 MB
+[2026-03-10 17:31:25] 
+[2026-03-10 17:31:25] ==========================================
+[2026-03-10 17:31:25] ✅ Nightly check complete
+[2026-03-10 17:31:26] ==========================================

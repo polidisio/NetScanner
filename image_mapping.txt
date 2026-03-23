@@ -1,0 +1,67 @@
+# Mapeo de imágenes para Card Survivor
+# Basado en: 4 clases, 8 enemigos, 35+ cartas, estilo gótico
+
+# Personajes (characters)
+# 1. Warrior - Guerrero con armadura pesada, espada
+# 2. Mage - Mago con túnica, bastón mágico
+# 3. Rogue - Pícaro con capa, dagas
+# 4. Paladin - Paladín con armadura brillante, martillo
+
+# Enemigos (enemies) - 8 tipos
+# 1. Skeleton - Esqueleto con espada
+# 2. Zombie - Zombie descompuesto
+# 3. Ghost - Fantasma translúcido
+# 4. Vampire - Vampiro con capa
+# 5. Demon - Demonio con cuernos
+# 6. Goblin - Goblin verde con garrote
+# 7. Orc - Orc musculoso con hacha
+# 8. Dragon - Dragón escamoso
+
+# Cartas (cards) - categorías
+# - Ataque (attack): espada, flecha, fuego, rayo
+# - Defensa (defend): escudo, armadura, barrera
+# - Hechizos (spell): libro, runa, orbe
+# - Curación (heal): poción, cruz, luz
+# - Mejoras (buff): corona, estrella, aura
+# - Debilitamientos (debuff): calavera, veneno, sombra
+
+# Fondos (backgrounds)
+# - Castillo gótico
+# - Mazmorra
+# - Bosque oscuro
+# - Ruinas
+# - Cementerio
+# - Templo antiguo
+
+# Interfaz (ui)
+# - Botones
+# - Iconos
+# - Marcos
+# - Barras de vida/mana
+
+# Propuesta de nombres:
+# character_warrior.jpg
+# character_mage.jpg  
+# character_rogue.jpg
+# character_paladin.jpg
+# enemy_skeleton.jpg
+# enemy_zombie.jpg
+# enemy_ghost.jpg
+# enemy_vampire.jpg
+# enemy_demon.jpg
+# enemy_goblin.jpg
+# enemy_orc.jpg
+# enemy_dragon.jpg
+# card_attack_sword.jpg
+# card_attack_fire.jpg
+# card_defend_shield.jpg
+# card_spell_book.jpg
+# card_heal_potion.jpg
+# card_buff_crown.jpg
+# card_debuff_skull.jpg
+# background_castle.jpg
+# background_dungeon.jpg
+# background_forest.jpg
+# background_graveyard.jpg
+# ui_button_round.jpg
+# ui_icon_health.jpg

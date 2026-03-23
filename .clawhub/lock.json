@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "opencode-controller": {
+      "version": "1.0.0",
+      "installedAt": 1772620812918
+    },
+    "apple-reminders": {
+      "version": "1.0.0",
+      "installedAt": 1772620992900
+    },
+    "notion": {
+      "version": "1.0.0",
+      "installedAt": 1772621009082
+    }
+  }
+}

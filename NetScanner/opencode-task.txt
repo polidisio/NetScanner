@@ -1,0 +1,10 @@
+Implement the complete NetworkScanner class in scanner.py
+
+Requirements:
+1. Use scapy for ARP scanning (srp with ARP request)
+2. Get hostname via socket.gethostbyaddr for each IP
+3. Use mac_vendor_lookup to get vendor from MAC
+4. Add Pi-hole integration via API to get DHCP leases
+5. Make scan() return real device data with: ip, mac, hostname, vendor, last_seen
+6. Add confidence score for device identification
+7. Export to JSON and CSV should work properly

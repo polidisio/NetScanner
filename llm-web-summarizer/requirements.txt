@@ -1,0 +1,13 @@
+# Core
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+pyyaml>=6.0
+
+# LLM Providers (optional - install what you need)
+# minimax-sdk>=0.1.0
+# openai>=1.0.0
+
+# CLI
+click>=8.1.0
+tqdm>=4.66.0

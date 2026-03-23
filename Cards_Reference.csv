@@ -1,0 +1,123 @@
+Name,Type,Cost,Damage,Block,Effect,Description,Rarity,Class
+Strike,Attack,1,6,0,None,Deal 6 damage,Common,All
+Defend,Skill,1,0,5,None,Gain 5 block,Common,All
+Bash,Attack,2,10,0,Vulnerable,Apply Vulnerable (2),Deal 10 damage and apply Vulnerable,Uncommon,All
+Shrug It Off,Skill,1,0,8,None,Gain 8 block,Common,Warrior
+Armsmaster,Skill,2,0,0,Energy,Gain 2 energy,Epic,Warrior
+Bloodletting,Attack,3,22,0,SelfDamage,Deal 22 damage. Take 3 damage,Rare,Warrior
+Body Slam,Attack,1,0,0,SacDown,Gain block equal to your block,Rare,Warrior
+Cleave,Attack,1,7,0,None,Deal 7 damage to ALL enemies,Common,Warrior
+Dark Embrace,Power,0,0,0,None,Whenever a card is exhausted draw 1 card,Rare,Warrior
+Demon Form,Power,3,0,0,Strength,At end of turn gain 1 Strength,Legendary,Warrior
+Double Tap,Skill,1,0,0,None,Next Attack plays twice,Rare,Warrior
+Dual Wield,Skill,1,0,0,None,Create a copy of an Attack or Power in your hand,Rare,Warrior
+Entrench,Skill,2,0,0,None,Double your current block,Rare,Warrior
+Exhume,Skill,1,0,0,None,Put a card from your exhaust pile into your hand,Rare,Warrior
+Feel No Pain,Power,1,0,0,None,Whenever a card is exhausted gain 3 block,Rare,Warrior
+Fiend Fire,Attack,2,14,0,Exhaust,Exhaust your hand Deal 7 damage for each exhausted card,Rare,Warrior
+Flame Barrier,Skill,2,0,12,None,Gain 12 block Gain 2 Strength,Rare,Warrior
+Ghostly Armor,Skill,1,0,10,Intangible,Gain 10 block Gain 1 intangible,Rare,Warrior
+Hemorrhage,Attack,1,5,0,Weak,Apply 2 Weak Deal 5 damage,Rare,Warrior
+Immolate,Attack,2,21,0,None,Deal 21 damage to ALL enemies,Rare,Warrior
+Impervious,Skill,2,0,30,None,Gain 30 block,Rare,Warrior
+Inflame,Power,2,0,0,Strength,At end of turn gain 1 Strength,Rare,Warrior
+Metallicize,Power,1,0,0,None,At end of turn gain 3 block,Rare,Warrior
+Offering,Skill,0,0,0,Energy,Lose 6 HP Gain 2 energy Draw 3 cards,Rare,Warrior
+Power Through,Skill,1,0,15,None,Gain 15 block Add 2 Wounds to hand,Rare,Warrior
+Pummel,Attack,1,4,0,Multiple,Deal 4 damage 4 times Exhaust,Rare,Warrior
+Rage,Skill,0,0,0,None,Whenever you play an Attack gain 3 block,Rare,Warrior
+Rampage,Attack,1,8,0,None,Deal 8 damage Damage increases this combat,Rare,Warrior
+Reaper,Attack,4,25,0,Heal,Heal HP for unblocked damage,Rare,Warrior
+Sword Boomerang,Attack,1,3,0,None,Deal 3 damage to a random enemy 3 times,Rare,Warrior
+Thunderclap,Attack,1,4,0,None,Deal 4 damage to ALL enemies Apply 1 Vulnerable,Rare,Warrior
+True Grit,Skill,1,0,7,Exhaust,Gain 7 block Exhaust a card in hand,Rare,Warrior
+Uppercut,Attack,2,13,0,Weak,Deal 13 damage Apply 1 Weak and 1 Vulnerable,Rare,Warrior
+Whirlwind,Attack,X,5,0,None,Deal 5 damage to ALL enemies X times,Rare,Warrior
+Fireball,Attack,2,12,0,None,Deal 12 damage,Common,Mage
+Ice Block,Skill,3,0,0,Intangible,Gain 1 Intangible,Rare,Mage
+Lightning Orb,Orb,0,0,0,Channel,Channel 1 Lightning,Common,Mage
+Frost Orb,Orb,0,0,0,Channel,Channel 1 Frost,Common,Mage
+Dark Orb,Orb,0,0,0,Channel,Channel 1 Dark,Common,Mage
+Arcane Armor,Skill,2,0,10,None,Gain 10 block,Rare,Mage
+Cold Snap,Attack,1,6,0,None,Deal 6 damage Apply 1 Weak,Rare,Mage
+Dual Cast,Skill,0,0,0,Evoke,Evoke your orb twice,Rare,Mage
+Echo Form,Power,3,0,0,None,The first card played each turn is played twice,Legendary,Mage
+Electrodynamics,Attack,2,8,0,None,Deal 8 damage to ALL enemies Channel 1 Lightning,Rare,Mage
+Energy Upgrade,Skill,1,0,0,None,Upgrade all your orbs,Rare,Mage
+Fission,Skill,0,0,0,None,Channel 1 Dark Double your Dark orb,Rare,Mage
+Ghost,Skill,1,0,8,Intangible,Gain 8 block Gain 1 Intangible,Rare,Mage
+Glacier,Skill,2,0,14,Frost,Gain 14 block Channel 1 Frost,Rare,Mage
+Meteor,Attack,4,30,0,None,Deal 30 damage,Rare,Mage
+Multicast,Skill,2,0,0,None,For the next 2 turns trigger the passive of your first orb,Rare,Mage
+Rainbow,Skill,2,0,0,Channel,Channel 1 of each orb,Rare,Mage
+Static Discharge,Skill,1,3,0,Lightning,Deal 3 damage to ALL enemies 3 times,Rare,Mage
+Storm,Attack,0,2,0,Channel,Channel 1 Lightning Deal 2 damage,Rare,Mage
+Thermal Dynamics,Skill,0,0,0,Frost,Gain 2 Energy,Rare,Mage
+Turbo,Skill,0,0,0,Energy,Gain 1 Energy,Rare,Mage
+Void,Skill,1,0,0,Channel,Channel 1 Dark,Rare,Mage
+Zap,Attack,0,3,0,Channel,Channel 1 Lightning Deal 3 damage,Rare,Mage
+Backstab,Attack,0,5,0,None,Deal 5 damage This turn it deals double,Rare,Rogue
+Cloak and Dagger,Skill,1,0,6,None,Gain 6 block Add a Dagger to hand,Rare,Rogue
+Dagger Spray,Attack,1,4,0,None,Deal 4 damage to ALL enemies twice,Rare,Rogue
+Dagger Throw,Attack,1,9,0,None,Deal 9 damage Add a Dagger to hand,Rare,Rogue
+Deadly Poison,Skill,1,0,0,Poison,Apply 3 Poison,Rare,Rogue
+Deflect,Skill,1,0,4,None,Gain 4 block,Common,Rogue
+Die Die Die,Attack,2,17,0,None,Deal 17 damage to ALL enemies,Rare,Rogue
+Dodge and Roll,Skill,1,0,4,None,Gain 4 block Next turn gain 4 block,Rare,Rogue
+Envenom,Power,2,0,0,None,Whenever you apply Poison apply 1 more,Rare,Rogue
+Escape Plan,Skill,0,0,0,Draw,Draw 2 cards Gain 4 block,Rare,Rogue
+Eviscerate,Attack,3,8,0,None,Deal 8 damage Costs 1 less Energy for each card in hand,Rare,Rogue
+Expertise,Skill,1,0,0,Draw,Draw cards until you have 3 in hand,Rare,Rogue
+Finisher,Attack,1,6,0,Multiple,Deal 6 damage Apply this X times where X is energy spent,Rare,Rogue
+Flechettes,Skill,0,3,0,None,Deal 3 damage Add a Flechette to hand,Rare,Rogue
+Footwork,Skill,1,0,0,None,Gain 2 Dexterity,Rare,Rogue
+Grand Finale,Attack,1,50,0,None,Deal 50 damage if all enemies are stunned,Rare,Rogue
+Heel Hook,Attack,1,6,0,None,Deal 6 damage If enemy is Weak deal double,Rare,Rogue
+Infinite Blades,Power,1,0,0,None,At end of turn add a Dagger to hand,Rare,Rogue
+Noxious Fumes,Power,1,0,0,Poison,At end of turn apply 2 Poison to ALL enemies,Rare,Rogue
+Outmaneuver,Skill,1,0,0,Energy,Gain 2 Energy next turn,Rare,Rogue
+Piercing Woo,Attack,1,6,0,None,Deal 6 damage Ignored enemy block,Rare,Rogue
+Poison Tip,Skill,1,0,0,Poison,Your Attacks apply 1 more Poison,Rare,Rogue
+Prepared,Skill,0,0,0,Draw,Draw 1 card Discard 1 card,Rare,Rogue
+Quick Slash,Attack,0,4,0,None,Deal 4 damage Draw 1 card,Rare,Rogue
+Reflex,Skill,0,0,0,Draw,If empty hand draw 2 cards,Rare,Rogue
+Rend,Attack,2,14,0,None,Deal 14 damage If enemy is below half HP deal double,Rare,Rogue
+Sneaky Strike,Attack,1,8,0,None,Deal 8 damage If you are intangible deal double,Rare,Rogue
+Strike Through,Skill,1,0,0,None,Your attacks bypass enemy block,Rare,Rogue
+Sunder,Attack,3,24,0,None,Deal 24 damage If this kills enemy gain 3 Energy,Rare,Rogue
+Survivor,Skill,1,0,0,None,Gain 8 block Discard 1 card,Rare,Rogue
+Terror,Attack,3,25,0,None,Apply 3 Weak Apply 3 Vulnerable,Rare,Rogue
+Tools,Skill,0,0,0,None,Add 3 random Skills to hand,Rare,Rogue
+Twinning,Skill,1,0,0,None,Your next attack is played twice,Rare,Rogue
+Underhanded Strike,Attack,1,10,0,None,Deal 10 damage If you have Artifact gain 5 Gold,Rare,Rogue
+Unload,Attack,1,14,0,Exhaust,Deal 14 damage Exhaust all cards in hand,Rare,Rogue
+Venomology,Skill,1,0,0,Poison,At end of turn apply 2 Poison to enemy,Rare,Rogue
+Wraith Form,Skill,2,0,0,Intangible,Gain 1 Intangible Apply 2 Vulnerable to enemy,Rare,Rogue
+Twin Strike,Attack,1,5,0,Multiple,Deal 5 damage twice,Common,Rogue
+Cleanse,Skill,1,0,0,None,Remove all debuffs from yourself,Rare,Paladin
+Command,Skill,1,0,0,Buff,Apply 3 vulnerable to ALL enemies,Rare,Paladin
+Crusader,Attack,2,9,0,HPLeech,Deal 9 damage Heal HP for unblocked damage,Rare,Paladin
+Divine Shield,Skill,3,0,0,Block,Gain 5 intangible,Rare,Paladin
+Empower,Skill,1,0,0,Buff,Add 2 random Paladin cards to hand,Rare,Paladin
+Exorcism,Attack,2,15,0,None,Deal 15 damage If enemy has artifact deal double,Rare,Paladin
+Flame Strike,Attack,4,28,0,None,Deal 28 damage Apply 2 Vulnerable,Rare,Paladin
+Glint,Attack,0,4,0,None,Deal 4 damage Gain 1 block,Rare,Paladin
+Heal,Skill,1,0,0,Heal,Heal 6 HP,Rare,Paladin
+Holy Light,Skill,2,0,0,Heal,Heal 12 HP,Rare,Paladin
+Holy Nova,Attack,2,10,0,None,Deal 10 damage to ALL enemies Heal 3 HP,Rare,Paladin
+Infuse,Skill,0,0,0,None,Add 2 random Paladin cards to hand,Rare,Paladin
+Judgment,Attack,1,10,0,HPLeech,Deal 10 damage Heal HP for unblocked damage,Rare,Paladin
+Lay on Hands,Skill,3,0,0,Heal,Heal 15 HP Exhaust,Rare,Paladin
+Liberate,Skill,1,0,0,None,Apply 2 Weak to ALL enemies,Rare,Paladin
+Light,Skill,1,0,0,Buff,Apply 3 Strength to yourself,Rare,Paladin
+Meditate,Skill,0,0,0,Energy,End your turn Gain 2 energy,Rare,Paladin
+Orbit,Skill,1,0,0,Buff,Apply 2 Strength to ALL allies,Rare,Paladin
+Purify,Skill,1,0,0,None,Remove all debuffs from yourself,Rare,Paladin
+Redemption,Skill,1,0,0,Block,At end of turn gain 5 block for each enemy,Rare,Paladin
+Smite,Attack,1,14,0,None,Deal 14 damage Apply 1 Weak,Rare,Paladin
+Solar,Skill,1,0,0,Energy,Gain 2 energy,Rare,Paladin
+Stun,Attack,1,8,0,Stun,Deal 8 damage Stun enemy,Rare,Paladin
+Turn,Skill,1,0,0,None,Gain 2 energy Apply 2 Vulnerable to enemy,Rare,Paladin
+Valor,Skill,1,0,0,Block,Gain 8 block Next turn gain 1 energy,Rare,Paladin
+Wallop,Attack,2,12,0,None,Deal 12 damage Gain 3 block,Rare,Paladin
+Zap,Attack,0,4,0,None,Deal 4 damage Gain 1 block,Rare,Paladin

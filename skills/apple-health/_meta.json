@@ -1,0 +1,11 @@
+{
+  "owner": "ivangdavila",
+  "slug": "apple-health",
+  "displayName": "Apple Health",
+  "latest": {
+    "version": "1.0.0",
+    "publishedAt": 1772277690623,
+    "commit": "https://github.com/openclaw/skills/commit/29c2a65eb782ed19557330f3958e57b8053579df"
+  },
+  "history": []
+}

@@ -1,0 +1,11 @@
+{
+  "name": "Publicar Tweet",
+  "shortcutName": "Publicar Tweet",
+  "steps": [
+    {
+      "title": "Tweet",
+      "type": "com.apple.shortcuts.text.tweet",
+      "tweetText": "${ShortcutInput}"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "dashboard": {
+    "lastCheckedMessageId": 10,
+    "lastCheckTime": "2026-03-19T18:41:00+00:00"
+  },
+  "newsletter": {
+    "lastSent": "2026-03-22T16:18:00+00:00",
+    "lastSentSlot": "19:00"
+  }
+}

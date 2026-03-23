@@ -1,0 +1,26 @@
+# LLM Web Summarizer Configuration
+
+# Default LLM provider: minimax, openai, anthropic
+default_provider: minimax
+
+# MiniMax Configuration
+minimax:
+  api_key: "your-minimax-api-key-here"
+  base_url: "https://api.minimax.chat/v1"
+  default_model: "MiniMax-M2.5"
+
+# OpenAI Configuration (optional)
+openai:
+  api_key: "your-openai-api-key-here"
+  default_model: "gpt-4o"
+
+# Scraper Configuration
+scraper:
+  timeout: 30
+  max_retries: 3
+  user_agent: "LLM-Web-Summarizer/1.0"
+
+# Summarization
+summarization:
+  default_max_length: 300
+  default_prompt: "Summarize the following web content in {max_length} words or less, focusing on the key information:"

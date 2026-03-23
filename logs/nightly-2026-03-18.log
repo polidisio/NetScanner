@@ -1,0 +1,31 @@
+[2026-03-18 03:00:02] ==========================================
+[2026-03-18 03:00:02] OpenClaw Nightly Health Check
+[2026-03-18 03:00:02] ==========================================
+[2026-03-18 03:00:02] 📝 Checking memory...
+[2026-03-18 03:00:02]    ⚠️ Creating today's memory file
+[2026-03-18 03:00:02]    ✅ Yesterday's memory exists: 2026-03-17.md
+[2026-03-18 03:00:02]    💾 Backing up memory...
+[2026-03-18 03:00:02]    ✅ Memory backed up to OneDrive
+[2026-03-18 03:00:02] 🔧 Checking services...
+[2026-03-18 03:00:02]    ✅ Dashboard running on port 5007
+[2026-03-18 03:00:02]    ⚠️ OpenClaw gateway may not be running
+[2026-03-18 03:00:02]    ✅ Skills directory exists (6 skills)
+[2026-03-18 03:00:02] 🧠 Memory maintenance...
+[2026-03-18 03:00:02]    📅 MEMORY.md last updated: 2026-03-08
+[2026-03-18 03:00:02]    🗑️ Old logs cleaned (keeping 30 days)
+[2026-03-18 03:00:02] 💻 System info...
+[2026-03-18 03:00:02]    💾 Disk usage: 42%
+[2026-03-18 03:00:02]    🧊 Memory active: ~359 MB
+[2026-03-18 03:00:02] 🔄 Checking OpenClaw updates...
+[2026-03-18 03:00:02]    ✅ OpenClaw up to date ()
+[2026-03-18 03:00:02] 🔄 Checking system updates...
+[2026-03-18 03:00:11]    ✅ System up to date
+[2026-03-18 03:00:11] 🖥️ Monitoring remote Mac 192.168.1.201...
+[2026-03-18 03:00:11]    ✅ Remote Mac reachable
+[2026-03-18 03:00:13]       Uptime:  3:00  up 26 days
+[2026-03-18 03:00:13]       CPU: CPU usage: 10.11% user
+[2026-03-18 03:00:13]       Disk: 29%
+[2026-03-18 03:00:13] 
+[2026-03-18 03:00:13] ==========================================
+[2026-03-18 03:00:13] ✅ Nightly check complete
+[2026-03-18 03:00:13] ==========================================
